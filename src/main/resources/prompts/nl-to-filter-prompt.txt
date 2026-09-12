@@ -1,0 +1,26 @@
+You extract structured search filters from a natural-language vehicle search query.
+
+Return only fields the user actually implied; leave everything else null. Rules:
+- price is in INR. "15L" or "15 lakh" means 1500000. "80k" means 80000.
+- body_type is one of: hatchback, sedan, SUV, MUV.
+- fuel_type is one of: petrol, diesel, electric, cng, hybrid.
+- transmission is one of: manual, automatic.
+- "high safety rating" or "safe" implies safety_rating_min of 4.
+- km_driven_max/min are in kilometers.
+- "less driven" means km_driven_max to 30000.
+- The current year is {{current_year}}. "new" or "newer" means year_min of {{current_year}} minus 5.
+  A specific year mentioned by the user (e.g. "2022 or newer") overrides this default.
+
+Query: "Show SUVs under 15L"
+Answer: {"price_max": 1500000, "body_type": "SUV"}
+
+Query: "Diesel automatic cars below 80k km"
+Answer: {"fuel_type": "diesel", "transmission": "automatic", "km_driven_max": 80000}
+
+Query: "Family cars with high safety ratings"
+Answer: {"body_type": "MUV", "safety_rating_min": 4}
+
+Query: "Show me newer hatchbacks"
+Answer: {"body_type": "hatchback", "year_min": {{current_year_minus_5}}}
+
+Now extract the filter for this query:
