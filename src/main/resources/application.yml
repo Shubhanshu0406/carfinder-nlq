@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: carfinder-nlq
+
+elasticsearch:
+  host: ${ES_HOST:localhost}
+  port: ${ES_PORT:9200}
+  scheme: ${ES_SCHEME:http}
+  index: vehicles
+
+gemini:
+  api-key: ${GEMINI_API_KEY:}
+  model: ${GEMINI_MODEL:gemini-3.6-flash}
+  base-url: https://generativelanguage.googleapis.com/v1beta
+
+app:
+  seed:
+    auto-load: ${SEED_AUTO_LOAD:false}
+    file: seed-data/vehicles.ndjson
+    mapping-file: seed-data/mapping.json
