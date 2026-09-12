@@ -1,0 +1,29 @@
+{
+  "settings": {
+    "analysis": {
+      "normalizer": {
+        "lowercase_normalizer": {
+          "type": "custom",
+          "filter": ["lowercase"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": { "type": "keyword" },
+      "brand": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "model": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "variant": { "type": "text" },
+      "price": { "type": "long" },
+      "body_type": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "fuel_type": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "transmission": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "km_driven": { "type": "long" },
+      "year": { "type": "short" },
+      "safety_rating": { "type": "byte" },
+      "city": { "type": "keyword", "normalizer": "lowercase_normalizer" },
+      "listed_date": { "type": "date", "format": "yyyy-MM-dd" }
+    }
+  }
+}
